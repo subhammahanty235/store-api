@@ -19,11 +19,12 @@ app.use('/api/v1/products',require('./routes/products'))
 
 app.use(notFound)
 app.use(errorhandlingMiddleware)
-const uri = "mongodb+srv://subham235:subham1234@cluster0.wuy84.mongodb.net/store_api?retryWrites=true&w=majority"
+const port = process.env.PORT || 5000
+const uri = process.env.MONGO_URI
 const start = async()=>{
     try {
         await connectDB(uri)
-        app.listen(5000 , console.log("Started"))
+        app.listen(port , console.log("Started"))
     } catch (error) { 
         console.log(error)
     }
